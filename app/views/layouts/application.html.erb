@@ -83,8 +83,10 @@
 
 
   <%= f.input :remember_me, as: :boolean %>
+    <%= render "devise/shared/links" %>
 
   </div>
+
   <div class="modal-footer">
      <%= f.submit "Sign in",  class: "btn btn-success" %>
 
@@ -112,6 +114,7 @@
 
   <%= f.input :password_confirmation %>
 
+      <%= render "devise/shared/links" %>
 
   </div>
   <div class="modal-footer">

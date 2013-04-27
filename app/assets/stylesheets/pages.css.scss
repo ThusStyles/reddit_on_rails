@@ -31,3 +31,21 @@ span.label a{
 		text-decoration: none;
 	}
 }
+
+span.error{
+	display: none;
+}
+
+.field_with_errors{
+	@extend .control-group;
+	@extend .error;
+}
+
+#error_explanation {
+	color: #CC0000;
+
+	ul{
+		list-style: none;
+		margin: 0 0 10px 0;
+	}
+}

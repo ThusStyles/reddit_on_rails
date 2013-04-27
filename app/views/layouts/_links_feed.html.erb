@@ -27,15 +27,16 @@
 		</div>
 		<div class="span9">
 		<% if link.url.present? %>
-			<a href="<%= link.url %>"><%= link.title %></a> - by <%= link_to link.user.username, profile_path(link.user.username) %>
+			<a href="<%= link.url %>"><%= link.title %></a>
 		<% else %>
 			<%= link_to link.title, link %>
 		<% end %>
-		<% if link.user == current_user %>
-				<%= link_to "Delete", link, method: :delete, confirm: "Are you sure you want to delete this?" %>
+		<% if link.user == current_user %> - 
+				<small><%= link_to "Delete", link, method: :delete, confirm: "Are you sure you want to delete this?" %></small>
 
 				<% end %>
-	<p><small><%= link_to "comments (#{link.comments.count})", link %> - <%= time_ago_in_words(link.created_at)%> ago</small></p>
+	<p><small><%= link_to "comments (#{link.comments.count})", link %> - <%= time_ago_in_words(link.created_at)%> ago
+				by <%= link_to link.user.username, profile_path(link.user.username) %></p></small>
 	</div>
 	</div>
 </div>

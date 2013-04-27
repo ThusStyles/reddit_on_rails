@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-   validates :username, uniqueness: true, presence: true, format: { with: /^[a-zA-z0-9_-]+$/}
+   validates :username, uniqueness: true, presence: true, format: { with: /^[a-zA-z0-9_-]+$/}, length: { maximum: 25, minimum: 2}
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username

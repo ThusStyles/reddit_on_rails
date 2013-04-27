@@ -1,10 +1,12 @@
 <div class="row">
-<div class="span4">
+<div class="span8">
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
 <fieldset>
   <legend>Edit my account</legend>
   <div class="well">
+    <div class="row">
+      <div class="span4">
   <%= devise_error_messages! %>
 
  <%= f.input :email %>
@@ -20,19 +22,18 @@
  <%= f.input :password_confirmation %>
 
   <%= f.input :current_password %> <i>(we need your current password to confirm your changes)</i>
-
+  <br>
   <%= f.submit "Update", class: "btn" %>
-
+  <% end %>
+      </div>
+      <div class="span3">
+        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class: "btn btn-danger", :data => { :confirm => "Are you sure?" }, 
+          :method => :delete %></p>
+        </div>
+      </div>
+  </div><%# End of row %>
   </div>
   </fieldset>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
-
-<%= link_to "Back", :back %>
-</div>
-
 
 </div>
+

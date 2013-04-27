@@ -14,9 +14,9 @@ RedditOnRails::Application.routes.draw do
 
 
   devise_scope :user do
-  get "sign-in", :to => "devise/sessions#new"
-  get "sign-up", :to => "devise/registrations#new"
-  delete "logout", :to => "devise/sessions#destroy"
+  get "sign-in", :to => "devise/sessions#new", as: :signin
+  get "sign-up", :to => "devise/registrations#new", as: :signup
+  delete "logout", :to => "devise/sessions#destroy", as: :logout
 
 end
 

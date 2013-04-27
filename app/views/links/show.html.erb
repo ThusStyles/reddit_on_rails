@@ -1,5 +1,6 @@
 <div class="well">
 <h4><%= link_to @link.title, @link.url %></h4>
+<small>submitted <%= time_ago_in_words(@link.created_at) %> ago by <%= link_to @link.user.username, profile_path(@link.user.username) %></small>
 </div>
 
 <%= simple_form_for(@comment) do |f| %>
@@ -20,14 +21,15 @@
   <%= f.hidden_field :link_id, value: @link.id %>
 
   <div class="field">
-    <%= f.text_area :message, placeholder: "Add a comment", rows: "6" %>
+    <%= f.text_area :message, placeholder: "Add a comment", rows: "4" %>
   </div>
   <div class="actions">
     <%= f.button :submit, class: "btn btn-primary" %>
   </div>
 <% end %>
 <% if @link.comments.size > 0 %>
-  <h2>Comments:</h2>
+
+  <h2><%= pluralize(@link.comments.size, "Comment") %>:</h2>
   <div class="page-header"></div>
 <% end %>
 <div>
@@ -36,10 +38,10 @@
   <% @link.comments.each do |comment| %>
   <div class="well well-small">
     <div class="row">
-    <div class="span1">
+    <div class="span2">
     <span class="label"><%= link_to comment.user.username, profile_path(comment.user.username) %></span>
     </div>
-    <div class="span10">
+    <div class="span8">
     <p class="text-left"><%= comment.message %></p><small><%= time_ago_in_words(comment.created_at) %> ago</small>
     </div>
     </div>

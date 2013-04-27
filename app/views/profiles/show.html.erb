@@ -1,13 +1,28 @@
+<% if @user == current_user %>
 <h1>My profile - <%= link_to "Edit account", edit_user_registration_path(current_user), class: "btn" %></h1>
+<% else %>
+<h1><%= @user.username %>'s profile</h1>
+<% end %>
+
 <div class="page-header"></div>
 
+<% if @user == current_user %>
 <h2>My Links</h2>
-<% if @user.links.empty? %>
+<% else %>
+<h2><%= @user.username %>'s links</h2>
+<% end %>
+
+<% if @user.links.empty?  %>
 	<div class="well well-small">
+    <% if @user == current_user %>
 		<h4>You have no links, post some now!</h4>
 		<%= link_to "Post a new link", new_link_path,class: "btn btn-info" %>
+    <% else %>
+    <h4><%= @user.username %> currently has no links</h4>
+    <% end %>
 	</div>
 <% end %>
+
 
 <% @user.links.each do |link| %>
 	
@@ -15,11 +30,17 @@
 
 <% end %>
 
+<% if @user == current_user %>
 <h2>My Comments</h2>
+<% end %>
+
 <% if @user.comments.empty? %>
 <div class="well well-small">
+<% if @user == current_user %>
 <h4>You have no comments, post some now!</h4>
-
+<% else %>
+<h4><%= @user.username %> hasn't commented on anything yet</h4>
+<% end %>
 </div>
 <% else %>
   <% @user.comments.each do |comment| %>

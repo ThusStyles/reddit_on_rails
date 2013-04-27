@@ -1,0 +1,33 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'bootstrap';
+
+.modal {
+	width:350px;
+	left: 55%;
+}
+
+.meta{
+	width: 80px;
+	height: auto;
+	float: left;
+	border-right: 1px solid #ccc;
+	padding: 10px 0 10px 20px;
+}
+
+.span9 p{
+	margin: 0;
+	padding: 0;
+}
+
+
+span.label a{
+	color: #fff;
+
+	&:hover{
+		color: #fafafa;
+		text-decoration: none;
+	}
+}

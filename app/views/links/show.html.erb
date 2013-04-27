@@ -1,0 +1,49 @@
+<div class="well">
+<h4><%= link_to @link.title, @link.url %></h4>
+</div>
+
+<%= simple_form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if current_user.present? %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <% end %>
+  <%= f.hidden_field :link_id, value: @link.id %>
+
+  <div class="field">
+    <%= f.text_area :message, placeholder: "Add a comment", rows: "6" %>
+  </div>
+  <div class="actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>
+<% if @link.comments.size > 0 %>
+  <h2>Comments:</h2>
+  <div class="page-header"></div>
+<% end %>
+<div>
+  
+
+  <% @link.comments.each do |comment| %>
+  <div class="well well-small">
+    <div class="row">
+    <div class="span1">
+    <span class="label"><%= link_to comment.user.username, profile_path(comment.user.username) %></span>
+    </div>
+    <div class="span10">
+    <p class="text-left"><%= comment.message %></p><small><%= time_ago_in_words(comment.created_at) %> ago</small>
+    </div>
+    </div>
+    </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,37 @@
+<h1>My profile - <%= link_to "Edit account", edit_user_registration_path(current_user), class: "btn" %></h1>
+<div class="page-header"></div>
+
+<h2>My Links</h2>
+<% if @user.links.empty? %>
+	<div class="well well-small">
+		<h4>You have no links, post some now!</h4>
+		<%= link_to "Post a new link", new_link_path,class: "btn btn-info" %>
+	</div>
+<% end %>
+
+<% @user.links.each do |link| %>
+	
+		<%= render '/layouts/links_feed', link: link %>
+
+<% end %>
+
+<h2>My Comments</h2>
+<% if @user.comments.empty? %>
+<div class="well well-small">
+<h4>You have no comments, post some now!</h4>
+
+</div>
+<% else %>
+  <% @user.comments.each do |comment| %>
+  <div class="well well-small">
+    <div class="row">
+    <div class="span1">
+    <span class="label"><%= comment.user.username %></span>
+    </div>
+    <div class="span10">
+    <p><%= comment.message %> - on <%= link_to (comment.link).title, link_path(comment.link) %></p>
+    </div>
+    </div>
+    </div>
+  <% end %>
+  <% end %>

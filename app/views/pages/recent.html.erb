@@ -1,0 +1,7 @@
+<h2>Recent Links</h2>
+
+<% @links.each do |link| %>
+	
+		<%= render '/layouts/links_feed', link: link %>
+
+<% end %>

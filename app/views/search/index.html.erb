@@ -1,0 +1,9 @@
+
+
+
+<h2>Here are all the links that matched "<%= params[:q] %>"</h2>
+<% @links.each do |link| %>
+	
+		<%= render '/layouts/links_feed', link: link %>
+
+<% end %>

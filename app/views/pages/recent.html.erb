@@ -1,7 +1,13 @@
 <h2>Recent Links</h2>
-
+<div class="page-header"></div>
+<% if @links.empty? %>
+		<h4>There are currently no links, post one now!</h4>
+		<%= link_to "New link", new_link_path, class: "btn btn-info" %>
+		<% else %>
 <% @links.each do |link| %>
-	
+		
 		<%= render '/layouts/links_feed', link: link %>
+
+<% end %>
 
 <% end %>

@@ -1,8 +1,12 @@
 <h2>Top Links</h2>
-
+<div class="page-header"></div>
+<% if @links.empty? %>
+		<h4>There are currently no top links</h4>
+<% else %>
 <% @links.each do |link| %>
-	
+		
 		<%= render '/layouts/links_feed', link: link %>
 
 <% end %>
 
+<% end %>

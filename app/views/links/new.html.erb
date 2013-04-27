@@ -1,5 +1,17 @@
-<%= simple_form_for(@link) do |f| %>
-  <% if @link.errors.any? %>
+
+
+<ul class="nav nav-tabs" id="myTab">
+  <li><a data-toggle="tab" href="#link">Link</a></li>
+  <li><a href="#message" data-toggle="tab">Message</a></li>
+  
+</ul>
+ 
+<div class="tab-content">
+  <div class="tab-pane" id="link">
+
+
+    <%= simple_form_for(@link) do |f| %>
+  <% if @link.errors.any? && params[:link] && params[:link][:type_of_link] == "url" %>
     <div id="error_explanation">
       <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
 
@@ -14,12 +26,65 @@
     <%= f.input :title %>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :type_of_link, value: "url" %>
 
-    <%= f.input :url %>
+
+    <%= f.input :url, label: "Url (Not required)" %>
 
   <div class="actions">
     <%= f.submit "Post Link", class: "btn btn-primary" %>
   </div>
 <% end %>
 
+  </div>
+  <div class="tab-pane" id="message">
+
+    <%= simple_form_for(@link, url: { action: 'create_message',  method: :post}) do |f| %>
+  <% if @link.errors.any? && params[:link] && params[:link][:type_of_link] == "message"%>
+    <div id="error_explanation">
+      <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+      <ul>
+      <% @link.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.input :title %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :type_of_link, value: "message" %>
+
+    <%= f.input :message, size: 5 %>
+
+  <div class="actions">
+    <%= f.submit "Post Message", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+  </div>
+ 
+</div>
+<% if params[:link] && params[:link][:type_of_link] == "message" %>
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show');
+  })
+</script>
+<% else %>
+<script>
+  $(function () {
+    $('#myTab a:first').tab('show');
+  })
+</script>
+<% end %>
+
+<script>
+
+  $(document).ready(function ($) {
+        $(".myTab").tabs();
+    });
+</script>
 

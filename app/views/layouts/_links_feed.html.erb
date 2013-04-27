@@ -27,7 +27,7 @@
 		</div>
 		<div class="span9">
 		<% if link.url.present? %>
-			<a href="<%= link.url %>"><%= link.title %></a>
+			<a href="<%= link.url %>"><%= link.title.html_safe %></a>
 		<% else %>
 			<%= link_to link.title, link %>
 		<% end %>
@@ -36,7 +36,7 @@
 
 				<% end %>
 	<p><small><%= link_to "comments (#{link.comments.count})", link %> - <%= time_ago_in_words(link.created_at)%> ago
-				by <%= link_to link.user.username, profile_path(link.user.username) %></p></small>
+				by <%= link_to link.user.username.html_safe, profile_path(link.user.username) %></p></small>
 	</div>
 	</div>
 </div>

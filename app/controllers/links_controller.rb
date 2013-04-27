@@ -8,6 +8,7 @@ class LinksController < ApplicationController
 
 	def new
 		@link = Link.new
+		@message = Link.new
 	end
 
 	def destroy
@@ -19,13 +20,28 @@ class LinksController < ApplicationController
 	end
 
 	def create
+		
 		@link = Link.new(params[:link])
-		if @link.save
-			flash[:success] = "The link has been posted"
-			redirect_to root_path
-		else
-			flash[:error] = "The link was not posted"
-			render 'new'
-		end
+			if @link.save
+				flash[:success] = "The link has been posted"
+				redirect_to @link
+			else
+				flash[:error] = "The link was not posted"
+				render 'new'
+			end
+
+
+		
 	end
+
+	def create_message
+			@link = Link.new(params[:link])
+				if @link.save
+					flash[:success] = "The link has been posted"
+					redirect_to @link
+				else
+					flash[:error] = "The link was not posted"
+					render 'new'
+				end
+		end
 end

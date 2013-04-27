@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427151850) do
+ActiveRecord::Schema.define(:version => 20130427203606) do
 
   create_table "comments", :force => true do |t|
     t.string   "message"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20130427151850) do
     t.datetime "updated_at",                   :null => false
     t.string   "title"
     t.integer  "upvotes_count", :default => 0
+    t.text     "message"
+    t.string   "type_of_link"
   end
 
   add_index "links", ["user_id"], :name => "index_links_on_user_id"

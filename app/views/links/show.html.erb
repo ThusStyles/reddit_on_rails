@@ -1,6 +1,10 @@
 <div class="well">
 <h4><%= link_to @link.title, @link.url %></h4>
 <small>submitted <%= time_ago_in_words(@link.created_at) %> ago by <%= link_to @link.user.username, profile_path(@link.user.username) %></small>
+<% if @link.type_of_link == "message" %>
+<br><br>
+<%= @link.message.gsub(/\n/, '<br>').html_safe %>
+<% end %>
 </div>
 
 <%= simple_form_for(@comment) do |f| %>
@@ -39,10 +43,10 @@
   <div class="well well-small">
     <div class="row">
     <div class="span2">
-    <span class="label"><%= link_to comment.user.username, profile_path(comment.user.username) %></span>
+    <span class="label"><%= link_to comment.user.username.html_safe, profile_path(comment.user.username) %></span>
     </div>
     <div class="span8">
-    <p class="text-left"><%= comment.message %></p><small><%= time_ago_in_words(comment.created_at) %> ago</small>
+    <p class="text-left"><%= comment.message.html_safe %></p><small><%= time_ago_in_words(comment.created_at) %> ago</small>
     </div>
     </div>
     </div>

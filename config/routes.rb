@@ -1,7 +1,6 @@
 RedditOnRails::Application.routes.draw do
     get 'search' => 'search#index'
   get "/recent", to: 'pages#recent', as: :recent
-
   get "/:username", to: 'profiles#show', as: :profile
   devise_for :users
   resources :votes, only: [:create, :destroy]
@@ -11,6 +10,8 @@ RedditOnRails::Application.routes.draw do
   root to: "pages#index"
   resources :links
   resources :comments
+
+  post "/create-message", to: "links#create_message", as: :createmessage
 
 
   devise_scope :user do

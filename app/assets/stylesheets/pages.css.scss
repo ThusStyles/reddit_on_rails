@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import 'bootstrap';
+@import 'shadowbox';
 
 .modal {
 	width:350px;
@@ -56,8 +57,8 @@ span.error{
 }
 
 li.image img{
-	width: 39px;
-	height: 39px;
+	width: 40px;
+	height: 40px;
 	margin-left: 30px;
 	border-right: 1px solid #aaa;
 	border-left: 1px solid #aaa;

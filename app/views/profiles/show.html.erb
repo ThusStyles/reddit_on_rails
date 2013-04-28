@@ -1,7 +1,10 @@
+<script type="text/javascript">
+  Shadowbox.init();
+</script>
 <div class="row">
   <div class="span2 pull-right">
   <% if @user.image.present? %>
-  <%= link_to image_tag(@user.image_url.to_s), @user.image_url.to_s, rel: "lightbox" %>
+  <%= link_to image_tag(@user.image_url.to_s), asset_path(@user.image_url.to_s), rel: "shadowbox" %>
   <% else %>
   <%= image_tag gravatar_url(@user.email) %>
   <% end %>
@@ -16,7 +19,6 @@
 <% end %>
 </div>
 
-<a href="http://www.thedrum.com/uploads/drum_basic_article/91551/main_images/DFS.jpg" rel="lightbox">http://www.thedrum.com/uploads/drum_basic_article/91551/main_images/DFS.jpg</a>
 </div>
 <div class="page-header"></div>
 

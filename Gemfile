@@ -12,8 +12,9 @@ gem 'simple_form'
 gem 'pg'
 gem 'textacular', :require => 'textacular/rails'
 gem 'bootstrap-sass', '2.1'
+gem 'mini_magick'
 gem 'carrierwave'
-gem 'rubylight'
+gem 'shadowbox-rails'
 
 
 # Gems used only for assets and not required

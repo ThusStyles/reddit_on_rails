@@ -12,8 +12,8 @@ gem 'simple_form'
 gem 'pg'
 gem 'textacular', :require => 'textacular/rails'
 gem 'bootstrap-sass', '2.1'
-
-
+gem 'carrierwave'
+gem 'rubylight'
 
 
 # Gems used only for assets and not required

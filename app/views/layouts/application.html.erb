@@ -41,9 +41,15 @@
 			</ul>
 			<ul class="nav pull-right">
         <%= form_tag(search_path, method: :get, class: "navbar-form pull-left") do %>
-  <%= text_field_tag(:q, nil, placeholder: "search") %>
+  <%= text_field_tag(:q, nil, placeholder: "search", style: "width: 150px;") %>
 <% end %>
+<li class="divider-vertical"></li>
 	<% if current_user.present? %>
+  <% if current_user.image.present? %>
+  <li class="image"> <%= image_tag current_user.image_url.to_s %></li>
+  <% else %>
+  <li class="image"><%= link_to image_tag(gravatar_url(current_user.email)), profile_path(current_user.username) %></li>
+  <% end %>
     <li><%= link_to current_user.username, profile_path(current_user.username) %></li>
 		<li><%= link_to "Logout", logout_path, method: :delete %></li>
 
@@ -77,13 +83,13 @@
    
     <%= simple_form_for("user", :url => user_session_path) do |f| %>
 
-  <%= f.input :email, :autofocus => true %>
+  <%= f.input :login, :autofocus => true, label: "Username or email" %>
 
   <%= f.input :password %>
 
 
   <%= f.input :remember_me, as: :boolean %>
-    <%= render "devise/shared/links" %>
+    <div class="well"><h5>Help</h5><ul><%= render "devise/shared/links" %></ul></div>
 
   </div>
 
@@ -97,25 +103,38 @@
 </div>
 
 <!-- Signup Modal -->
-<div id="signup" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="signup" class="modal modal-signup hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Sign up</h3>
+    <h3 id="myModalLabel">Sign up to Reddit on Rails</h3>
   </div>
   <div class="modal-body">
-
-  <%= simple_form_for("user", :url => user_registration_path) do |f| %>
+    <div class="row">
+      <div class="span3">
+  <%= simple_form_for("user", :url => user_registration_path, multipart: true, controller: "registrations") do |f| %>
  
   <%= f.input :email, :autofocus => true %>
 
   <%= f.input :username %>
 
+  <%= f.label 'profile_picture (optional)', :required => false %>
+
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
+  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+  <div>
+    <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><%= f.file_field :image %></span>
+    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+  </div>
+</div>
+</div>
+<div class="span3">
   <%= f.input :password %>
 
   <%= f.input :password_confirmation %>
-
-      <%= render "devise/shared/links" %>
-
+  <div class="well"><h5>Help</h5><ul><%= render "devise/shared/links" %></ul></div>
+</div>
+      </div>
   </div>
   <div class="modal-footer">
    <%= f.submit "Sign up", class: "btn btn-success" %>

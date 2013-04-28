@@ -9,6 +9,11 @@
 	left: 55%;
 }
 
+.modal-signup {
+	width:800px;
+	left: 40%;
+}
+
 .meta{
 	width: 80px;
 	height: auto;
@@ -48,4 +53,16 @@ span.error{
 		list-style: none;
 		margin: 0 0 10px 0;
 	}
+}
+
+li.image img{
+	width: 39px;
+	height: 39px;
+	margin-left: 30px;
+	border-right: 1px solid #aaa;
+	border-left: 1px solid #aaa;
+}
+li.image a{
+	margin: 0;
+	padding: 0 !important;
 }

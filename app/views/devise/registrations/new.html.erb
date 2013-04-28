@@ -1,7 +1,7 @@
 
 <div class="row">
 <div class="span4">
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), multipart: true)  do |f| %>
 <fieldset>
   <legend>Sign up</legend>
     <div><%= devise_error_messages! %></div>
@@ -12,6 +12,16 @@
   <%= f.input :email, :autofocus => true %>
 
   <%= f.input :username %>
+   <%= f.label 'profile_picture (optional)', :required => false %>
+
+    <div class="fileupload fileupload-new" data-provides="fileupload">
+  <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;"><img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" /></div>
+  <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+  <div>
+    <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span><%= f.file_field :image %></span>
+    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+  </div>
+</div>
 
   <%= f.input :password %>
 

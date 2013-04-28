@@ -1,9 +1,10 @@
 RedditOnRails::Application.routes.draw do
+
     get 'search' => 'search#index'
+
   get "/recent", to: 'pages#recent', as: :recent
-  get "/:username", to: 'profiles#show', as: :profile
-  devise_for :users
-  resources :votes, only: [:create, :destroy]
+devise_for :users, :controllers => { :registrations => :registrations }
+resources :votes, only: [:create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -13,13 +14,13 @@ RedditOnRails::Application.routes.draw do
 
   post "/create-message", to: "links#create_message", as: :createmessage
 
-
-  devise_scope :user do
+devise_for :users, :skip => [:sessions]
+as :user do
   get "sign-in", :to => "devise/sessions#new", as: :signin
   get "sign-up", :to => "devise/registrations#new", as: :signup
   delete "logout", :to => "devise/sessions#destroy", as: :logout
-
 end
+    get "/:username", to: 'profiles#show', as: :profile
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

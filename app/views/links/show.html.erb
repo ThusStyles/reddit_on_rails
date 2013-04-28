@@ -30,7 +30,7 @@
   </div>
   <div class="span7">
 <h4><%= link_to @link.title, @link.url %></h4>
-<small>submitted <%= time_ago_in_words(@link.created_at) %> ago in <%= link_to @link.subreddit.name, @link.subreddit %> by <%= link_to @link.user.username, profile_path(@link.user.username) %></small>
+<small>submitted <%= time_ago_in_words(@link.created_at) %> ago in <%= link_to @link.subreddit.name, top_path(@link.subreddit) %> by <%= link_to @link.user.username, profile_path(@link.user.username) %></small>
 <% if @link.type_of_link == "message" %>
 <br><br>
 <%= @link.message.gsub(/\n/, '<br>').html_safe %>

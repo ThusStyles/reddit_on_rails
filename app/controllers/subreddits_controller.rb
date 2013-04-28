@@ -18,6 +18,13 @@ class SubredditsController < ApplicationController
 
 	def show
 		@subreddit = Subreddit.find_by_name(params[:id])
-		@links = @subreddit.links.paginate(page: params[:page], per_page: 10 )
+		@toplinks = @subreddit.links.order('upvotes_count desc, created_at desc')
 	end
+
+	def recent
+		@subreddit = Subreddit.find_by_name(params[:id])
+		@recentlinks = @subreddit.links.order('created_at desc')
+
+	end
+
 end

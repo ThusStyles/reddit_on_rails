@@ -20,7 +20,7 @@
 			<a class="brand" href="<%= root_path %>">Reddit on Rails</a>
 			<ul class="nav">
       <li><%= link_to "Top", root_path %></li>
-      <li><%= link_to "Recent", recent_path %></li>
+      <li><%= link_to "Recent", frontrecent_path %></li>
       <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
       New
@@ -39,7 +39,7 @@
     </a>
     <ul class="dropdown-menu">
        <% Subreddit.all.each do |subreddit| %>
-       <li><%= link_to subreddit.name, subreddit %></li>
+       <li><%= link_to subreddit.name, top_path(subreddit.name) %></li>
        <% end %>
     </ul>
   </li>

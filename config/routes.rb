@@ -1,8 +1,13 @@
 RedditOnRails::Application.routes.draw do
+  
+  get '/r/recent/:id', to: "subreddits#recent", as: :recent
+  get "/r/:id", to: "subreddits#show", as: :top
 
     get 'search' => 'search#index'
 
-  get "/recent", to: 'pages#recent', as: :recent
+  get "/front-recent", to: 'pages#recent', as: :frontrecent
+
+    
 devise_for :users, :controllers => { :registrations => :registrations }
 resources :votes, only: [:create, :destroy]
 
@@ -12,6 +17,8 @@ resources :votes, only: [:create, :destroy]
   resources :links
   resources :comments
   resources :subreddits
+
+
 
   post "/create-message", to: "links#create_message", as: :createmessage
 

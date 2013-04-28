@@ -2,14 +2,14 @@
 
 
 <ul class="nav nav-tabs" id="myTab">
-  <li class="active"><a href="#top" data-toggle="tab">Top</a></li>
- <li><%= link_to "Recent", recent_path %></li>
+  <li><%= link_to "Top", top_path %></li>
+ <li class="active"> <%= link_to "Recent", recent_path %></li>
 </ul>
 
 
 	 <%# ========= TOP =========== %>
 
-  	<% @toplinks.each do |link| %>
+  	<% @recentlinks.each do |link| %>
 	<%= render partial: '/layouts/links_feed', locals: {link: link} %>
 
 <% end %>

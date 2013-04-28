@@ -2,9 +2,9 @@
   Shadowbox.init();
 </script>
 <div class="row">
-  <div class="span2 pull-right">
+  <div class=" pull-right">
   <% if @user.image.present? %>
-  <%= link_to image_tag(@user.image_url.to_s), asset_path(@user.image_url.to_s), rel: "shadowbox" %>
+  <%= link_to image_tag(@user.image_url(:thumb).to_s), asset_path(@user.image_url(:large).to_s), rel: "shadowbox" %>
   <% else %>
   <%= image_tag gravatar_url(@user.email) %>
   <% end %>

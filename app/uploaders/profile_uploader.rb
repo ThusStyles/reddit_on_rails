@@ -4,8 +4,8 @@ class ProfileUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
 
-  #include CarrierWave::RMagick
-  #include CarrierWave::MiniMagick
+ include CarrierWave::RMagick
+ #include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   # include Sprockets::Helpers::RailsHelper
@@ -21,7 +21,18 @@ class ProfileUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
- 
+  version :large do
+     process resize_to_fit: [700, 700]
+   end
+
+   version :thumb do
+     process resize_to_fill: [150, 150]
+   end
+
+    version :icon do
+      process resize_to_fill: [40, 40]
+    end
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:

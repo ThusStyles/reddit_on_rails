@@ -12,6 +12,7 @@ gem 'simple_form'
 gem 'pg'
 gem 'textacular', :require => 'textacular/rails'
 gem 'bootstrap-sass', '2.1'
+gem 'rmagick'
 gem 'carrierwave'
 gem 'shadowbox-rails'
 

@@ -11,6 +11,7 @@ resources :votes, only: [:create, :destroy]
   root to: "pages#index"
   resources :links
   resources :comments
+  resources :subreddits
 
   post "/create-message", to: "links#create_message", as: :createmessage
 

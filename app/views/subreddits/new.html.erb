@@ -1,0 +1,22 @@
+
+    <%= simple_form_for(@subreddit) do |f| %>
+  <% if @subreddit.errors.any? && params[:link] && params[:link][:type_of_link] == "url" %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subreddit.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+      <ul>
+      <% @subreddit.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.input :name, label: "Subreddit name" %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
+  <div class="actions">
+    <%= f.submit "Add subreddit", class: "btn btn-primary" %>
+  </div>
+<% end %>

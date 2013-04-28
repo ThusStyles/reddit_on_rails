@@ -1,0 +1,6 @@
+<h1><%= @subreddit.name %></h1>
+
+<% @subreddit.links.each do |link| %>
+	<%= render partial: '/layouts/links_feed', locals: {link: link} %>
+
+<% end %>

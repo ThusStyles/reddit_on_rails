@@ -19,7 +19,7 @@ class VotesController < ApplicationController
 		else
 			@vote = current_user.votes.create(params[:vote])
 		end
-		redirect_to root_path
+		redirect_to :back
 			
 	end
 end

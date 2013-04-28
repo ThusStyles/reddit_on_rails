@@ -36,7 +36,7 @@
 
 				<% end %>
 	<p><small><%= link_to "comments (#{link.comments.count})", link %> - <%= time_ago_in_words(link.created_at)%> ago
-				by <%= link_to link.user.username.html_safe, profile_path(link.user.username) %></p></small>
+				in <%= link_to link.subreddit.name, link.subreddit %> by <%= link_to link.user.username.html_safe, profile_path(link.user.username) %></p></small>
 	</div>
 	</div>
 </div>

@@ -21,6 +21,31 @@
 
 </div>
 <div class="page-header"></div>
+<% if @user == current_user %>
+<h2>My Subreddits</h2>
+<% else %>
+<h2><%= @user.username %>'s links</h2>
+<% end %>
+
+<% if @user.links.empty?  %>
+  <div class="well well-small">
+    <% if @user == current_user %>
+    <h4>You have no subreddits, create one now!</h4>
+    <%= link_to "Create a subreddit", new_subreddit_path,class: "btn btn-info" %>
+    <% else %>
+    <h4><%= @user.username %> currently has no subreddits</h4>
+    <% end %>
+  </div>
+<% end %>
+
+
+<% @user.subreddits.each do |subreddit| %>
+  
+    <div class="well">
+      <h4><%= link_to subreddit.name, subreddit %></h4>
+    </div>
+
+<% end %>
 
 <% if @user == current_user %>
 <h2>My Links</h2>

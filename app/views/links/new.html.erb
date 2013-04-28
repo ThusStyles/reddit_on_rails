@@ -31,6 +31,8 @@
 
     <%= f.input :url, label: "Url (Not required)" %>
 
+    <%= f.association :subreddit, label_method: lambda { |subreddit| "#{subreddit.name}" }, value_method: :id %>
+
   <div class="actions">
     <%= f.submit "Post Link", class: "btn btn-primary" %>
   </div>
@@ -58,6 +60,8 @@
   <%= f.hidden_field :type_of_link, value: "message" %>
 
     <%= f.input :message, size: 5 %>
+
+        <%= f.association :subreddit, label_method: lambda { |subreddit| "#{subreddit.name}" }, value_method: :id %>
 
   <div class="actions">
     <%= f.submit "Post Message", class: "btn btn-primary" %>

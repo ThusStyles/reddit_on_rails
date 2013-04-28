@@ -8,7 +8,7 @@ class LinksController < ApplicationController
 
 	def new
 		@link = Link.new
-		@message = Link.new
+		@subreddits = Subreddit.all
 	end
 
 	def destroy

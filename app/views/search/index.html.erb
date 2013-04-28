@@ -7,3 +7,4 @@
 		<%= render '/layouts/links_feed', link: link %>
 
 <% end %>
+<%= will_paginate @links, :renderer => BootstrapPagination::Rails %>

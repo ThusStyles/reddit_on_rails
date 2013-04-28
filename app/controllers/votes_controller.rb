@@ -13,13 +13,27 @@ class VotesController < ApplicationController
 
 
 		if @vote
+
 			@vote.vote_value = params[:vote][:vote_value]
 
-			@vote.save
+			if @vote.vote_value == -1
+				@vote.destroy
+			elsif @vote.vote_value == 1
+				@vote.destroy
+			else
+				@vote.save
+			end
+
+
+			
 		else
 			@vote = current_user.votes.create(params[:vote])
 		end
 		redirect_to :back
 			
 	end
+
+	def create_comment
+		
+	end	
 end

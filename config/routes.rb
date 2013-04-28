@@ -15,6 +15,7 @@ resources :votes, only: [:create, :destroy]
 
   post "/create-message", to: "links#create_message", as: :createmessage
 
+
 devise_for :users, :skip => [:sessions]
 as :user do
   get "sign-in", :to => "devise/sessions#new", as: :signin

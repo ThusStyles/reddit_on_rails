@@ -6,6 +6,23 @@ class LinksController < ApplicationController
 		@comment = Comment.new
 	end
 
+	def edit
+		@link = Link.find(params[:id])
+
+	end
+
+	def update
+		@link = Link.find(params[:id])
+		if @link.update_attributes(params[:link])
+			flash[:success] = "Successfully updated"
+			redirect_to @link
+		else
+			flash[:error] = "Could not update"
+			render "edit"
+		end
+	end
+
+
 	def new
 		@link = Link.new
 		@subreddits = Subreddit.all

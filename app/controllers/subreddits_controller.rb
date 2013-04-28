@@ -18,5 +18,6 @@ class SubredditsController < ApplicationController
 
 	def show
 		@subreddit = Subreddit.find_by_name(params[:id])
+		@links = @subreddit.links.paginate(page: params[:page], per_page: 10 )
 	end
 end

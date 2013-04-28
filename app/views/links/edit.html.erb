@@ -1,0 +1,60 @@
+ <% if @link.type_of_link == "url" %>
+
+ <%= simple_form_for(@link) do |f| %>
+  <% if @link.errors.any? && params[:link] && params[:link][:type_of_link] == "url" %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+      <ul>
+      <% @link.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.input :title %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :type_of_link, value: "url" %>
+
+
+    <%= f.input :url, label: "Url (Not required)" %>
+
+    <%= f.association :subreddit, label_method: lambda { |subreddit| "#{subreddit.name}" }, value_method: :id %>
+
+  <div class="actions">
+    <%= f.submit "Update Link", class: "btn btn-primary" %>
+  </div>
+<% end %>
+<% elsif @link.type_of_link == "message" %>
+
+
+
+   <%= simple_form_for(@link) do |f| %>
+  <% if @link.errors.any? && params[:link] && params[:link][:type_of_link] == "message"%>
+    <div id="error_explanation">
+      <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+      <ul>
+      <% @link.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.input :title %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :type_of_link, value: "message" %>
+
+    <%= f.input :message, size: 5 %>
+
+        <%= f.association :subreddit, label_method: lambda { |subreddit| "#{subreddit.name}" }, value_method: :id %>
+
+  <div class="actions">
+    <%= f.submit "Update Message", class: "btn btn-primary" %>
+  </div>
+<% end %>
+<% end %>

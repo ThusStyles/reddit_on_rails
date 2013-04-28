@@ -11,7 +11,7 @@ class SubredditsController < ApplicationController
 			flash[:success] = "#{@subreddit.name} has been created"
 			redirect_to @subreddit
 		else
-			flash[:error] = "#{@subreddit.name} was not created"
+			flash[:error] = "#{@subreddit.name} has already been taken"
 			render "new"
 		end
 	end

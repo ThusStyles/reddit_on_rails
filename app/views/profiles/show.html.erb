@@ -3,7 +3,7 @@
 </script>
 <div class="row">
   <div class=" pull-right">
-  <% if @user.image.present? %>
+  <% if @user.image_url.present? %>
   <%= link_to image_tag(@user.image_url(:thumb).to_s), asset_path(@user.image_url(:large).to_s), rel: "shadowbox" %>
   <% else %>
   <%= image_tag gravatar_url(@user.email) %>
@@ -30,7 +30,7 @@
 <h2><%= @user.username %>'s subreddits</h2>
 <% end %>
 
-<% if @user.links.empty?  %>
+<% if @user.subreddits.empty?  %>
   <div class="well well-small">
     <% if @user == current_user %>
     <h4>You have no subreddits, create one now!</h4>

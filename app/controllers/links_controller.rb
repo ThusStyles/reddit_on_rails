@@ -1,5 +1,5 @@
 class LinksController < ApplicationController
-	before_filter :authenticate_user!, only: [:new, :destroy]
+	before_filter :authenticate_user!, only: [:new, :destroy, :edit, :update]
 
 	def show
 		@link = Link.find(params[:id])

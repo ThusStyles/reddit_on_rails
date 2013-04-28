@@ -10,7 +10,7 @@
   <div class="tab-pane" id="link">
 
 
-    <%= simple_form_for(@link) do |f| %>
+    <%= simple_form_for(@link, html: {novalidate: true}) do |f| %>
   <% if @link.errors.any? && params[:link] && params[:link][:type_of_link] == "url" %>
     <div id="error_explanation">
       <h2><%= pluralize(@link.errors.count, "error") %> prohibited this link from being saved:</h2>
@@ -29,7 +29,7 @@
     <%= f.hidden_field :type_of_link, value: "url" %>
 
 
-    <%= f.input :url, label: "Url (Not required)" %>
+    <%= f.input :url, label: "Url (full url)" %>
 
     <%= f.association :subreddit, label_method: lambda { |subreddit| "#{subreddit.name}" }, value_method: :id %>
 

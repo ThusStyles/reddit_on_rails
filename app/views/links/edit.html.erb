@@ -19,7 +19,7 @@
     <%= f.hidden_field :type_of_link, value: "url" %>
 
 
-    <%= f.input :url, label: "Url (Not required)" %>
+    <%= f.input :url, label: "Url (full url)" %>
 
     <%= f.association :subreddit, label_method: lambda { |subreddit| "#{subreddit.name}" }, value_method: :id %>
 

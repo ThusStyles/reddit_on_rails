@@ -1,8 +1,16 @@
 <div class="well user-links">
 		<% votes = link.upvotes_count %>
 		<div class="row">
-			<div class="meta">
-		<span class="badge <%= 
+			<div class=
+			<% if current_user.present? && link.user_id == current_user.id %>
+			"span1"
+			<% else %>
+			"span2"
+			<% end %>
+			>
+			<div class="meta<%=  "-none" if current_user.present? && link.user_id == current_user.id %>">
+		
+				<span class="badge <%= 
 					case
 					when votes >=1
 						"badge-success"
@@ -12,7 +20,9 @@
 						"badge-important"
 					end
 		%>" ><%= votes %></span>
-
+		<% if current_user.present? && link.user_id == current_user.id %>
+		<% else %>
+		
 		<% if current_user && current_user.votes.where(link_id: link.id, vote_value: 1).size == 1 %>
 		<i class="icon-ok-sign"></i>
 		<% else %>
@@ -24,9 +34,18 @@
 
 		<% else %>
 		<%= link_to '<i class="icon-arrow-down"></i>'.html_safe, votes_path(vote: {link_id: link.id, vote_value: -1}), method: :post %>
-		<% end %>
+		<% end %><% end %>
 		</div>
-		<div class="span9">
+
+		</div>
+		<div class=
+		<% if current_user.present? && link.user_id == current_user.id %>
+			spaninfo_user
+			<% else %>
+			spaninfo
+			<% end %>
+			>
+
 		<% if link.url.present? %>
 			<a href="<%= link.url %>"><%= link.title.html_safe %></a>
 		<% else %>

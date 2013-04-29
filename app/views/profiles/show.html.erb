@@ -52,7 +52,8 @@
 
 
 <!-- ========== LINKS ========== -->
-
+<div class="row">
+  <div class="span6">
 <% if @user == current_user %>
 <h2>My Links</h2>
 <% else %>
@@ -73,11 +74,27 @@
 
 <% @user.links.each do |link| %>
 	
-		<%= render '/layouts/links_feed', link: link %>
+		<%= render '/layouts/links_feed', link: link, spaninfo_user: "span3" %>
 
 <% end %>
 
+</div>
+<div class="span6">
+    <h2>Links Voted Up</h2>
 
+<% if @user == current_user %>
+  <% if @user.votes.empty? %>
+    <div class="well well-small">
+      <h4>You haven't voted on anything yet!</h4>
+      <%= link_to "Top Links", root_path, class: "btn btn-info" %>
+    </div>
+    <% end %>
+  <% @user.votes.each do |vote| %>
+      <%= render '/layouts/links_feed', link: vote.link, spaninfo_user: "span3" %>
+  <% end %>
+  <% end %>
+  </div>
+  </div>
 <!-- ========== COMMENTS ========== -->
 
 <% if @user == current_user %>
@@ -112,3 +129,5 @@
   <% end %>
 </div>
   <% end %>
+
+  

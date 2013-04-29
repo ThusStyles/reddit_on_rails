@@ -1,5 +1,4 @@
 class LinksController < ApplicationController
-		autocomplete :subreddit, :name
 
 	before_filter :authenticate_user!, only: [:new, :destroy, :edit, :update]
 

@@ -10,5 +10,8 @@ class PagesController < ApplicationController
 	end
 
 	def home
+		if current_user.present? || user_signed_in?
+			redirect_to fronttop_path
+		end
 	end
 end

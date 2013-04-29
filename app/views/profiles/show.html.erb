@@ -84,7 +84,7 @@
   <% if @user.votes.empty? %>
     <div class="well well-small">
       <h4>You haven't voted on anything yet!</h4>
-      <%= link_to "Top Links", root_path, class: "btn btn-info" %>
+      <%= link_to "Top Links", fronttop_path, class: "btn btn-info" %>
     </div>
     <% end %>
   <% @user.votes.limit(5).each do |vote| %>

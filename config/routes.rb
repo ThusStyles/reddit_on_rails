@@ -8,6 +8,7 @@ RedditOnRails::Application.routes.draw do
   
   get 'search' => 'search#index'
 
+  get '/front-top', to: "pages#index", as: :fronttop
   get "/front-recent", to: 'pages#recent', as: :frontrecent
 
       get "/:username", to: 'profiles#show', as: :profile
@@ -21,7 +22,7 @@ resources :votes, only: [:create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  root to: "pages#index"
+  root to: "pages#home"
   
 
   resources :links

@@ -1,0 +1,20 @@
+<h2>All comments by <%= @user.username %></h2>
+
+<% @user_comments.each do |comment| %>
+	<div class="well well-small">
+    <div class="row">
+    <div class="span1">
+   
+    <%= image_tag(comment.user.image_url(:icon).to_s) %>
+    </div>
+    <div class="span8">
+    <span class="label"><%= link_to comment.user.username.html_safe, profile_path(comment.user.username) %></span>
+    <p class="text-left" style="padding: 10px 10px 0px 0;"><%= comment.message.html_safe %></p><small><%= time_ago_in_words(comment.created_at) %> ago
+    on <%= link_to comment.link.title, link_path(comment.link) %></small>
+    </div>
+    </div>
+    </div>
+
+<% end %>
+
+<%= will_paginate @user_comments, :renderer => BootstrapPagination::Rails %>

@@ -54,11 +54,9 @@
 <!-- ========== LINKS ========== -->
 <div class="row">
   <div class="span6">
-<% if @user == current_user %>
-<h2>My Links</h2>
-<% else %>
-<h2><%= @user.username %>'s links</h2>
-<% end %>
+
+<h2>Recent links <%= ( link_to "All links", user_all_links_path(@user.username), class: "btn" ) if @user.links.size > 5 %></h2>
+
 
 <% if @user.links.empty?  %>
 	<div class="well well-small">
@@ -72,7 +70,7 @@
 <% end %>
 
 
-<% @user.links.each do |link| %>
+<% @user.links.limit(5).each do |link| %>
 	
 		<%= render '/layouts/links_feed', link: link, link_content_if_user: "span4", link_content_if_not_users: "span3", spanmeta_if_not_users: "span2" %>
 
@@ -80,7 +78,7 @@
 
 </div>
 <div class="span6">
-    <h2>Links Voted Up</h2>
+    <h2>Recent votes <%= (link_to "All votes", user_all_votes_path(@user.username), class: "btn") if @user.votes.size > 5 %></h2>
 
 <% if @user == current_user %>
   <% if @user.votes.empty? %>
@@ -89,7 +87,7 @@
       <%= link_to "Top Links", root_path, class: "btn btn-info" %>
     </div>
     <% end %>
-  <% @user.votes.each do |vote| %>
+  <% @user.votes.limit(5).each do |vote| %>
       <%= render '/layouts/links_feed', link: vote.link, link_content_if_user: "span4", link_content_if_not_users: "span3", spanmeta_if_not_users: "span2" %>
   <% end %>
   <% end %>
@@ -97,11 +95,9 @@
   </div>
 <!-- ========== COMMENTS ========== -->
 
-<% if @user == current_user %>
-<h2>My Comments</h2>
-<% else %>
-<h2><%= @user.username %>'s comments</h2>
-<% end %>
+<h2>Recent comments <%= (link_to "All comments", user_all_comments_path(@user.username), class: "btn") if @user.comments.size > 5 %></h2>
+
+
 
 <% if @user.comments.empty? %>
 <div class="well well-small">
@@ -112,7 +108,7 @@
 <% end %>
 </div>
 <% else %>
-  <% @user.comments.each do |comment| %>
+  <% @user.comments.limit(5).each do |comment| %>
    <div class="well well-small">
     <div class="row">
     <div class="span1">
@@ -126,7 +122,7 @@
     </div>
     </div>
     </div>
-    </div>
+   
   <% end %>
 </div>
   <% end %>

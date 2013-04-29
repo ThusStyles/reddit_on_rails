@@ -2,22 +2,31 @@ RedditOnRails::Application.routes.draw do
   
   get '/r/recent/:id', to: "subreddits#recent", as: :recent
   get "/r/:id", to: "subreddits#show", as: :top
+  get '/formindex', to: "subreddits#formindex", as: :formindex
+  resources :subreddits
 
-    get 'search' => 'search#index'
+  
+  get 'search' => 'search#index'
 
   get "/front-recent", to: 'pages#recent', as: :frontrecent
 
-    
+      get "/:username", to: 'profiles#show', as: :profile
+
+    get '/user-links/:username', to: "profiles#index", as: :user_all_links
+    get '/user-votes/:username', to: "profiles#all_votes", as: :user_all_votes
+    get '/user-comments/:username', to: "profiles#all_comments", as: :user_all_comments
+
 devise_for :users, :controllers => { :registrations => :registrations }
 resources :votes, only: [:create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
   root to: "pages#index"
+  
+
   resources :links
   resources :comments
   resources :subreddits
-
 
 
   post "/create-message", to: "links#create_message", as: :createmessage
@@ -29,7 +38,6 @@ as :user do
   get "sign-up", :to => "devise/registrations#new", as: :signup
   delete "logout", :to => "devise/sessions#destroy", as: :logout
 end
-    get "/:username", to: 'profiles#show', as: :profile
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

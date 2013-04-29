@@ -1,4 +1,5 @@
 <h1><%= @subreddit.name %></h1>
+<p><%= @subreddit.description.gsub(/\n/, '<br>').html_safe if @subreddit.description.present? %></p>
 
 
 <ul class="nav nav-tabs" id="myTab">

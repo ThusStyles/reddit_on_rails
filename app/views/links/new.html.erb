@@ -31,7 +31,8 @@
 
     <%= f.input :url, label: "Url (full url)" %>
 
-    <%= f.association :subreddit, label_method: lambda { |subreddit| "#{subreddit.name}" }, value_method: :id %>
+    <%= f.label "Subreddit" %>
+    <%= f.text_field :subreddit_name, data: {autocomplete_source: formindex_path} %>
 
   <div class="actions">
     <%= f.submit "Post Link", class: "btn btn-primary" %>

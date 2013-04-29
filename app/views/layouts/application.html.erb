@@ -9,7 +9,7 @@
 
 
     <%= stylesheet_link_tag    "application"%>
-  	<%= javascript_include_tag "application" %>
+  	<%= javascript_include_tag "application"%>
   	<%= csrf_meta_tags %>
   </head>
 
@@ -38,8 +38,9 @@
       <b class="caret"></b>
     </a>
     <ul class="dropdown-menu">
-       <% Subreddit.all.each do |subreddit| %>
-       <li><%= link_to subreddit.name, top_path(subreddit.name) %></li>
+        <li><%= link_to "All", subreddits_path %></li>
+       <% Subreddit.joins(:links).select("subreddits.name, count(links.id) as link_count").limit(10).order('link_count DESC').group('subreddits.id').each do |subreddit| %>
+       <li><a href="<%= top_path(subreddit.name) %>"><%= subreddit.name %> (<%= subreddit.link_count %>)</a></li>
        <% end %>
     </ul>
   </li>

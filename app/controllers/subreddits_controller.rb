@@ -11,7 +11,6 @@ class SubredditsController < ApplicationController
 			flash[:success] = "#{@subreddit.name} has been created"
 			redirect_to @subreddit
 		else
-			flash[:error] = "#{@subreddit.name} has already been taken"
 			render "new"
 		end
 	end
@@ -28,6 +27,16 @@ class SubredditsController < ApplicationController
 		@subreddit = Subreddit.find_by_name(params[:id])
 		@recentlinks = @subreddit.links.order('created_at desc').paginate(page: params[:page], per_page: 10)
 
+	end
+
+	def formindex
+		# FOR AUTOCOMPLETE
+		@subreddit_search = Subreddit.order(:name).where("name like ?", "%#{params[:term]}%")
+		render json: @subreddit_search.map(&:name)
+	end
+
+	def index
+		@subreddits = Subreddit.joins(:links).group('subreddits.id').order('count(links.id) desc').paginate(page: params[:page], per_page: 10)
 	end
 
 end

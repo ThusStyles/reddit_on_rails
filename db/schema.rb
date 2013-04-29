@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130428104257) do
+ActiveRecord::Schema.define(:version => 20130429183159) do
 
   create_table "comments", :force => true do |t|
     t.string   "message"
@@ -36,13 +36,15 @@ ActiveRecord::Schema.define(:version => 20130428104257) do
     t.integer  "subreddit_id"
   end
 
+  add_index "links", ["subreddit_id"], :name => "index_links_on_subreddit_id"
   add_index "links", ["user_id"], :name => "index_links_on_user_id"
 
   create_table "subreddits", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.text     "description"
   end
 
   add_index "subreddits", ["name"], :name => "index_subreddits_on_name"

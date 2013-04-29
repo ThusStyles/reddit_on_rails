@@ -1,0 +1,8 @@
+<h2>All links by <%= @user.username %></h2>
+
+<% @user_votes.each do |vote| %>
+	<%= render '/layouts/links_feed', link: vote.link, link_content_if_user: "span4", link_content_if_not_users: "span3", spanmeta_if_not_users: "span2" %>
+
+<% end %>
+
+<%= will_paginate @user_votes, :renderer => BootstrapPagination::Rails %>

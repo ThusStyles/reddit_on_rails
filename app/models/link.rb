@@ -1,5 +1,5 @@
 class Link < ActiveRecord::Base
-  attr_accessible :user_id, :url, :title, :upvotes_count, :message, :type_of_link, :subreddit_id
+  attr_accessible :user_id, :url, :title, :upvotes_count, :message, :type_of_link, :subreddit_id, :subreddit_name
 
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -13,6 +13,15 @@ class Link < ActiveRecord::Base
   validates :title, presence: true
   validates :url, presence: true, format: { with: /^https?:\/\/([a-zA-Z0-9?\/._-]+)(\.[a-zA-Z0-9\/#]{2,})/ }
 
+  def subreddit_name
+    subreddit.try(:name)
+
+  end
+
+  def subreddit_name=(name)
+    self.subreddit = Subreddit.find_by_name(name) if name.present?
+  end
+  
   def url_to_full
   	self.url = self.url.gsub(/^[w(3).]+/, "http://www.")
   end

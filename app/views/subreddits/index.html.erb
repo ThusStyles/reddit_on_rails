@@ -1,0 +1,10 @@
+<h2>Subreddits</h2>
+<div class="page-header"></div>
+
+<% @subreddits.each do |subreddit| %>
+ <div class="well well-small">
+ 	<h4><a href="<%= top_path(subreddit.name) %>"><%= subreddit.name %> - (<%= subreddit.links.count %> links)</a></h4>
+ </div>
+<% end %>
+
+<%= will_paginate @subreddits, :renderer => BootstrapPagination::Rails %>

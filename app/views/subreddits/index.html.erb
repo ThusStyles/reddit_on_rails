@@ -3,7 +3,9 @@
 
 <% @subreddits.each do |subreddit| %>
  <div class="well well-small">
- 	<h4><a href="<%= top_path(subreddit.name) %>"><%= subreddit.name %> - (<%= subreddit.links.count %> links)</a></h4>
+ 	<h4><a href="<%= top_path(subreddit.name) %>"><%= subreddit.name %> - (<%= pluralize(subreddit.links.count, "link") %>)</a></h4>
+ 	<p><%= subreddit.description.gsub(/\n/, '<br>').html_safe if subreddit.description.present?%></p>
+
  </div>
 <% end %>
 

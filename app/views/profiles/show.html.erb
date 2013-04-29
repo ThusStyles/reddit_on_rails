@@ -121,7 +121,8 @@
     </div>
     <div class="span8">
     <span class="label"><%= link_to comment.user.username.html_safe, profile_path(comment.user.username) %></span>
-    <p class="text-left" style="padding: 10px 10px 0px 0;"><%= comment.message.html_safe %></p><small><%= time_ago_in_words(comment.created_at) %> ago</small>
+    <p class="text-left" style="padding: 10px 10px 0px 0;"><%= comment.message.html_safe %></p><small><%= time_ago_in_words(comment.created_at) %> ago
+    on <%= link_to comment.link.title, link_path(comment.link) %></small>
     </div>
     </div>
     </div>

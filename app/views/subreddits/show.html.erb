@@ -2,17 +2,17 @@
 
 
 <ul class="nav nav-tabs" id="myTab">
-  <li class="active"><a href="#top" data-toggle="tab">Top</a></li>
- <li><%= link_to "Recent", recent_path %></li>
+  <li class="active"><%= link_to "Top", top_path(@subreddit.name) %></li>
+ <li><%= link_to "Recent", recent_path(@subreddit.name) %></li>
 </ul>
 
 
 	 <%# ========= TOP =========== %>
 
-  	<% @toplinks.each do |link| %>
+  	<% @links.each do |link| %>
 	<%= render partial: '/layouts/links_feed', locals: {link: link, link_content_if_user: "span10", link_content_if_not_users: "span7", spanmeta_if_not_users: "span2"} %>
 
 <% end %>
-
+<%= will_paginate @links, :renderer => BootstrapPagination::Rails %>
   </div>
 

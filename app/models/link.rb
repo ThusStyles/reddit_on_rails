@@ -16,4 +16,6 @@ class Link < ActiveRecord::Base
   def url_to_full
   	self.url = self.url.gsub(/^[w(3).]+/, "http://www.")
   end
+
+  scope :since, lambda {|time| where("created_at > ?", time)}
 end

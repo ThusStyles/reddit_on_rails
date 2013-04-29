@@ -4,7 +4,7 @@
 <h2>Here are all the links that matched "<%= params[:q] %>"</h2>
 <% @links.each do |link| %>
 	
-		<%= render '/layouts/links_feed', link: link, spaninfo: "span7", spaninfo_user: "span10" %>
+		<%= render '/layouts/links_feed', link: link, link_content_if_user: "span10", link_content_if_not_users: "span7", spanmeta_if_not_users: "span2" %>
 
 <% end %>
 <%= will_paginate @links, :renderer => BootstrapPagination::Rails %>

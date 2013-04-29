@@ -6,7 +6,7 @@
 		<% else %>
 <% @links.each do |link| %>
 		
-		<%= render '/layouts/links_feed', link: link, spaninfo: "span7" %>
+		<%= render '/layouts/links_feed', link: link, link_content_if_user: "span10", link_content_if_not_users: "span7", spanmeta_if_not_users: "span2" %>
 
 <% end %>
 

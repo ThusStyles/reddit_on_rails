@@ -5,7 +5,7 @@
 			<% if current_user.present? && link.user_id == current_user.id %>
 			"span1"
 			<% else %>
-			"span2"
+			<%= spanmeta_if_not_users %>
 			<% end %>
 			>
 			<div class="meta<%=  "-none" if current_user.present? && link.user_id == current_user.id %>">
@@ -40,9 +40,9 @@
 		</div>
 		<div class=
 		<% if current_user.present? && link.user_id == current_user.id %>
-			spaninfo_user
+			<%= link_content_if_user %>
 			<% else %>
-			spaninfo
+			<%= link_content_if_not_users %>
 			<% end %>
 			>
 

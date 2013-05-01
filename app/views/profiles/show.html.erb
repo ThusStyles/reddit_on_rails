@@ -5,6 +5,7 @@
   <div class=" pull-right">
   <% if @user.image_url.present? %>
   <%= link_to image_tag(@user.image_url(:thumb).to_s), asset_path(@user.image_url(:large).to_s), rel: "shadowbox" %>
+
   <% else %>
   <%= image_tag gravatar_url(@user.email) %>
   <% end %>
@@ -80,19 +81,22 @@
 <div class="span6">
     <h2>Recent votes <%= (link_to "All votes", user_all_votes_path(@user.username), class: "btn") if @user.votes.size > 5 %></h2>
 
-<% if @user == current_user %>
   <% if @user.votes.empty? %>
-    <div class="well well-small">
+  <div class="well well-small">
+  <% if @user == current_user %>
       <h4>You haven't voted on anything yet!</h4>
       <%= link_to "Top Links", fronttop_path, class: "btn btn-info" %>
+    
+    <% else %>
+    <h4><%= @user.username %> hasn't voted on anything yet!</h4>
+    <% end %>
     </div>
     <% end %>
   <% @user.votes.limit(5).each do |vote| %>
       <%= render '/layouts/links_feed', link: vote.link, link_content_if_user: "span4", link_content_if_not_users: "span3", spanmeta_if_not_users: "span2" %>
   <% end %>
-  <% end %>
   </div>
-  </div>
+ </div>
 <!-- ========== COMMENTS ========== -->
 
 <h2>Recent comments <%= (link_to "All comments", user_all_comments_path(@user.username), class: "btn") if @user.comments.size > 5 %></h2>

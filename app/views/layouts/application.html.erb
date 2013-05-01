@@ -55,7 +55,7 @@
 			</ul>
 			<ul class="nav pull-right">
         <%= form_tag(search_path, method: :get, class: "navbar-form pull-left") do %>
-  <%= text_field_tag(:q, nil, placeholder: "search", style: "width: 150px;") %>
+  <%= text_field_tag(:q, nil, placeholder: "search links", style: "width: 150px;") %>
 <% end %>
 <li class="divider-vertical"></li>
 	<% if current_user.present? || user_signed_in? %>

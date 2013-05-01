@@ -32,8 +32,11 @@ class LinksController < ApplicationController
 	def destroy
 		@link = Link.find(params[:id])
 		@link.destroy
-		flash[:error] = "The link was deleted"
-		redirect_to :back
+
+		respond_to do |format|
+			
+			format.js
+		end
 		
 	end
 

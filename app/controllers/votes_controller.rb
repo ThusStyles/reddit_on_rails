@@ -8,6 +8,7 @@ class VotesController < ApplicationController
 		@link = Link.find_by_id(params[:vote][:link_id])
 
 		@link.upvotes_count += params[:vote][:vote_value].to_f
+
 		@link.save
 		
 
@@ -29,8 +30,11 @@ class VotesController < ApplicationController
 		else
 			@vote = current_user.votes.create(params[:vote])
 		end
-		redirect_to :back
-			
+		respond_to do |format|
+			format.html { redirect_to :back }
+			format.js
+		end
+		
 	end
 
 	def create_comment

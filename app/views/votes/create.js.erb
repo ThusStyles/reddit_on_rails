@@ -1,0 +1,17 @@
+$('#<%= @vote.link.id %> .badge').text('<%= @vote.link.upvotes_count %>');
+
+<% if current_user && current_user.votes.where(link_id: @vote.link.id, vote_value: 1).size == 1 %>
+	$('#<%= @vote.link.id %> .voteup').replaceWith('<div class="icon-minus-sign icon-no-up"></div>');
+<% end %>
+
+<% if current_user && current_user.votes.where(link_id: @vote.link.id, vote_value: -1).size == 1 %>
+	$('#<%= @vote.link.id %> .votedown').replaceWith('<div class="icon-minus-sign icon-no-down"></div>');
+<% end %>
+
+<% if current_user && current_user.votes.where(link_id: @vote.link.id, vote_value: 1).size == 0 %>
+	$('#<%= @vote.link.id %> .icon-no-up').replaceWith("<a data-method=\"post\" data-remote=\"true\" rel=\"nofollow\" class=\"voteup\" href=\"<%= votes_path(vote: {link_id: @vote.link.id, vote_value: 1}) %>\"><i class=\"icon-arrow-up\"></i></a>");
+<% end %>
+
+<% if current_user && current_user.votes.where(link_id: @vote.link.id, vote_value: -1).size == 0 %>
+	$('#<%= @vote.link.id %> .icon-no-down').replaceWith("<a data-method=\"post\" data-remote=\"true\" rel=\"nofollow\" class=\"votedown\" href=\"<%= votes_path(vote: {link_id: @vote.link.id, vote_value: -1}) %>\"><i class=\"icon-arrow-down\"></i></a>");
+<% end %>

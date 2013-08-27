@@ -19,7 +19,7 @@ class LinksController < ApplicationController
 			redirect_to @link
 		else
 			flash[:error] = "Could not update"
-			render "edit";
+			render "edit"
 		end
 	end
 

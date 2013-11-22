@@ -1,6 +1,8 @@
 <h2>Subreddits</h2>
 <div class="page-header"></div>
-
+<% if @subreddits.empty? %>
+	<h4>There are currently no subreddits</h4>
+<% else %>
 <% @subreddits.each do |subreddit| %>
  <div class="well well-small">
  	<h4><a href="<%= top_path(subreddit.name) %>"><%= subreddit.name %> - (<%= pluralize(subreddit.links.count, "link") %>)</a></h4>
@@ -10,3 +12,4 @@
 <% end %>
 
 <%= will_paginate @subreddits, :renderer => BootstrapPagination::Rails %>
+<% end %>

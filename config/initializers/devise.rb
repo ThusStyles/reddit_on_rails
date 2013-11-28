@@ -182,6 +182,7 @@ Devise.setup do |config|
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
   # config.token_authentication_key = :auth_token
+  config.secret_key = 'dasdhgsdjhgjeh74y7356796f789dfsy3g49876489' if Rails.env == 'production'
 
   # ==> Scopes configuration
   # Turn scoped views on. Before rendering "sessions/new", it will first check for

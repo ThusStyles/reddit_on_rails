@@ -1,8 +1,8 @@
 
 
 <ul class="nav nav-tabs" id="myTab">
-  <li><a data-toggle="tab" href="#link">Link</a></li>
-  <li><a href="#message" data-toggle="tab">Message</a></li>
+  <li><a data-toggle="tab" class="link" href="#link">Link</a></li>
+  <li><a href="#message" class="message" data-toggle="tab">Message</a></li>
   
 </ul>
  
@@ -32,7 +32,7 @@
     <%= f.input :url, label: "Url (full url)" %>
 
     <%= f.label "Subreddit" %>
-    <%= f.text_field :subreddit_name, data: {autocomplete_source: formindex_path} %>
+    <%= f.input :subreddit_name, collection: @subreddits, label: false %>
 
   <div class="actions">
     <%= f.submit "Post Link", class: "btn btn-primary" %>
@@ -63,7 +63,7 @@
     <%= f.input :message, size: 5 %>
     <%= f.label "Subreddit" %>
 
-    <%= f.text_field :subreddit_name, data: {autocomplete_source: formindex_path} %>
+    <%= f.input :subreddit_name, collection: @subreddits, label: false %>
 
   <div class="actions">
     <%= f.submit "Post Message", class: "btn btn-primary" %>
@@ -76,21 +76,21 @@
 <% if params[:link] && params[:link][:type_of_link] == "message" %>
 <script>
   $(function () {
-    $('#myTab a:last').tab('show');
+    $('#myTab a.message').tab('show');
   })
 </script>
 <% else %>
 <script>
   $(function () {
-    $('#myTab a:first').tab('show');
+    $('#myTab a.link').tab('show');
   })
 </script>
 <% end %>
 
 <script>
 
-  $(document).ready(function ($) {
-        $(".myTab").tabs();
-    });
+  $('#myTab a').click(function (event) {
+  event.preventDefault();
+  $(this).tab('show');
+})
 </script>
-

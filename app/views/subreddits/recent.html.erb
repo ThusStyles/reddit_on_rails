@@ -7,7 +7,9 @@
  <li class="active"> <%= link_to "Recent", recent_path(@subreddit.name) %></li>
 </ul>
 
-
+	<% if @recentlinks.empty? %>
+		<p>This subreddit is empty</p>
+	<% end %>
 	 <%# ========= TOP =========== %>
 
   	<% @recentlinks.each do |link| %>

@@ -17,6 +17,7 @@ gem 'rmagick'
 gem 'carrierwave'
 gem 'shadowbox-rails'
 gem "fog", "~> 1.3.1"
+gem 'newrelic_rpm'
 
 # Gems used only for assets and not required
 # in production environments by default.

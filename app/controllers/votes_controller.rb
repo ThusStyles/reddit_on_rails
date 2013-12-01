@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+	before_filter :check_logged_in, only: [:create]
 	before_filter :authenticate_user!, only: [:create]
 
 	
@@ -11,8 +12,6 @@ class VotesController < ApplicationController
 
 		@link.save
 		
-
-
 		if @vote
 
 			@vote.vote_value = params[:vote][:vote_value]
@@ -30,14 +29,24 @@ class VotesController < ApplicationController
 		else
 			@vote = current_user.votes.create(params[:vote])
 		end
+
 		respond_to do |format|
 			format.html { redirect_to :back }
 			format.js
 		end
+
+		
+		
 		
 	end
 
 	def create_comment
 		
 	end	
+
+	def check_logged_in
+		if !current_user.present? || !user_signed_in?
+			render "fail.js.erb"
+		end
+	end
 end

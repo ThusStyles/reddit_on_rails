@@ -1,4 +1,4 @@
-<div class="well">
+<div id="<%= @link.id %>" class="well">
   <% votes = @link.upvotes_count %>
   <div class="row">
     <div class=<% if current_user.present? && @link.user_id == current_user.id %>
@@ -24,13 +24,13 @@
     <% if current_user && current_user.votes.where(link_id: @link.id, vote_value: 1).present? %>
     <i class="icon-ok-sign"></i>
     <% else %>
-    <%= link_to '<i class="icon-arrow-up"></i>'.html_safe, votes_path(vote: {link_id: @link.id, vote_value: 1}), method: :post %>
+    <%= link_to '<i class="icon-arrow-up"></i>'.html_safe, votes_path(vote: {link_id: @link.id, vote_value: 1}), method: :post, remote: true,  class: "voteup"  %>
     <% end %>
 
     <% if current_user && current_user.votes.where(link_id: @link.id, vote_value: -1).size == 1 %>
     <i class="icon-ok-sign"></i>
     <% else %>
-    <%= link_to '<i class="icon-arrow-down"></i>'.html_safe, votes_path(vote: {link_id: @link.id, vote_value: -1}), method: :post %>
+    <%= link_to '<i class="icon-arrow-down"></i>'.html_safe, votes_path(vote: {link_id: @link.id, vote_value: -1}), method: :post, remote: true, class: "votedown" %>
     <% end %><% end %>
    
   </div>

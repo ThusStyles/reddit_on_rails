@@ -9,7 +9,7 @@ development:
   database: reddit_on_rails
   pool: 5
   username: postgres
-  password: postgres
+  password: music333
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,7 +20,7 @@ test:
   database: reddit_on_rails_test
   pool: 5
   username: postgres
-  password: postgres
+  password: music333
 
 production:
   adapter: postgresql
@@ -28,4 +28,4 @@ production:
   database: reddit_on_rails_production
   pool: 5
   username: postgres
-  password: postgres
+  password: music333
